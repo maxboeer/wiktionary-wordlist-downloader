@@ -1,6 +1,3 @@
-# Outputted files
-out/*.json
-
 # Logs
 logs
 *.log
