@@ -1,5 +1,5 @@
 # Outputted files
-out/*
+out/*.json
 
 # Logs
 logs
