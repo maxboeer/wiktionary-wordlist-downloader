@@ -1,3 +1,6 @@
+# Outputted files
+out/*
+
 # Logs
 logs
 *.log
