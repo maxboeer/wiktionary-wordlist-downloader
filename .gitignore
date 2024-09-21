@@ -1,6 +1,6 @@
 # Executable building
-build.ps1
 build
+build.ps1
 sea-config.json
 
 # Logs
