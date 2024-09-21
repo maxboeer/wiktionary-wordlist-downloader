@@ -1,5 +1,7 @@
-# Executable builds
+# Executable building
+build.ps1
 build
+sea-config.json
 
 # Logs
 logs

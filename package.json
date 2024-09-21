@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "node main.js -l de",
     "build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command .\\build.ps1",
-    "build_run": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command .\\build.ps1 && .\\build\\wiktionary-downloader.exe -l de",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
