@@ -1,3 +1,6 @@
+# Executable builds
+build
+
 # Logs
 logs
 *.log
