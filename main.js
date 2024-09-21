@@ -1,3 +1,4 @@
+const {dirname, isAbsolute} = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const unbzip2Stream = require('unbzip2-stream');
@@ -16,12 +17,12 @@ const optionDefinitions = [
         defaultOption: true,
         description: 'The language to download the wordlist in.\n Currently supported: [ de ]',
     },
-    // {
-    //     name: 'output',
-    //     alias: 'o',
-    //     type: String,
-    //     description: 'Desired output file path.'
-    // },
+    {
+        name: 'output',
+        alias: 'o',
+        type: String,
+        description: 'Desired output file path.'
+    },
     {
         name: 'help',
         alias: 'h',
@@ -49,7 +50,16 @@ if (options.help || !options.language  || (options.language !== 'de')) {
     console.log(usage);
 }else{
     regexes = regexManager.getRegexes(options.language);
-    downloadAndParseDump(options.language, `out/wordlist_${options.language}.json`);
+    let outputPath = options.output ? (isAbsolute(options.output) ? options.output : (__dirname + "/" + options.output)) : `${__dirname}/out/wordlist_${options.language}.json`;
+    let outputFolder = dirname(outputPath);
+    try {
+        if (!fs.existsSync(outputFolder))
+            fs.mkdirSync(outputFolder);
+    } catch (e) {
+        console.error(`Cannot create Folder at '${outputFolder}': `, e);
+    }
+
+    downloadAndParseDump(options.language, outputPath);
 }
 
 
@@ -156,7 +166,7 @@ async function downloadAndParseDump(language, outputFile) {
             console.log(`Downloading wordlist_${language}: 100%`);
             outputStream.write('\n]');
             outputStream.end();
-            console.log(`Successfully processed wordlist(${language})`);
+            console.log(`Successfully processed wordlist_${language}.json`);
         });
 
         // Start parsing
